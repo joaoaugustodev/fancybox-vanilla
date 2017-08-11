@@ -47,7 +47,7 @@ FancyBox.prototype.hideAndShow = function() {
 		_context.$image.style.opacity = 1
 		_context.$image.src = _context.getSrcImages()[_context.count]
 
-	}, 600)
+	}, 1000)
 }
 
 FancyBox.prototype.next = function() {
