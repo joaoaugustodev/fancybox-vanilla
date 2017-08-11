@@ -37,11 +37,24 @@ FancyBox.prototype.getAltImages = function() {
 	return this.alt
 }
 
+FancyBox.prototype.hideAndShow = function() {
+	const _context = this
+
+	this.$image.style.opacity = 0
+
+	setTimeout(function() {
+
+		_context.$image.style.opacity = 1
+		_context.$image.src = _context.getSrcImages()[_context.count]
+
+	}, 600)
+}
+
 FancyBox.prototype.next = function() {
 	this.count++
 
-	this.$image.src = this.getSrcImages()[this.count]
 	this.desc.innerHTML = '<p>'+ this.getAltImages()[this.count] +'</p><br>'
+	this.hideAndShow()
 
 }
 
@@ -52,10 +65,9 @@ FancyBox.prototype.back = function() {
 	this.count--
 
 	if (this.count < 0) this.count = _len	
-
-	this.$image.src = this.getSrcImages()[this.count]
 	this.desc.innerHTML = '<p>'+ this.getAltImages()[this.count] +'</p><br>'
 
+	this.hideAndShow()
 }
 
 
@@ -133,8 +145,3 @@ FancyBox.prototype.scaleImage = function() {
 	})
 
 }
-
-
-
-FancyBox('.fancyBox')
-			.showImage()
