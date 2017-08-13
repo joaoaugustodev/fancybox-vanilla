@@ -5,6 +5,8 @@ const FancyBox = function(target) {
 	this.images = this.target.querySelectorAll('img')
 	this.$image = new Image()
 	this.desc   = document.createElement('div')
+	this.miniThumbs = document.createElement('div')
+
 
 
 	this.src 	= []
@@ -13,6 +15,9 @@ const FancyBox = function(target) {
 	this.count  = 0
 
 	this.scaleImage()
+
+	this.$image.className = 'main-image'
+	this.minithumbnails()
 
 }
 
@@ -47,11 +52,13 @@ FancyBox.prototype.hideAndShow = function() {
 		_context.$image.style.opacity = 1
 		_context.$image.src = _context.getSrcImages()[_context.count]
 
-	}, 1000)
+	}, 600)
 }
 
 FancyBox.prototype.next = function() {
 	this.count++
+
+	if (this.count >= this.images.length) this.count = 0
 
 	this.desc.innerHTML = '<p>'+ this.getAltImages()[this.count] +'</p><br>'
 	this.hideAndShow()
@@ -64,12 +71,45 @@ FancyBox.prototype.back = function() {
 
 	this.count--
 
-	if (this.count < 0) this.count = _len	
-	this.desc.innerHTML = '<p>'+ this.getAltImages()[this.count] +'</p><br>'
+	if (this.count < 0) this.count = _len
 
+	this.desc.innerHTML = '<p>'+ this.getAltImages()[this.count] +'</p><br>'
 	this.hideAndShow()
 }
 
+FancyBox.prototype.minithumbnails = function() {
+	const _context	  = this
+
+	this.miniThumbs.className = 'minithumbs'
+
+	for (let i = 0; i < this.images.length; i++) {
+
+		const imgs = document.createElement('img')
+
+		imgs.src = _context.images[i].src
+		imgs.alt = _context.images[i].alt
+		imgs.setAttribute('count', _context.count++)
+
+		imgs.addEventListener('click', function(event) {
+			_context.count = parseInt(this.getAttribute('count'))
+			_context.$image.style.opacity = 0
+
+			setTimeout(function() {
+				_context.$image.style.opacity = 1
+				_context.$image.src = event.target.src
+				_context.desc.innerHTML = '<p>'+ _context.getAltImages()[_context.count] +'</p><br>'
+			}, 600)
+		})
+
+		_context.miniThumbs.appendChild(imgs)
+	}
+
+}
+
+FancyBox.prototype.thumbnailsShow = function(elem) {
+	elem.appendChild(this.miniThumbs)
+	elem.classList.toggle('showThumbs')
+}
 
 FancyBox.prototype.showImage = function() {
 
@@ -78,22 +118,28 @@ FancyBox.prototype.showImage = function() {
 	const _back    = document.createElement('button')
 	const _next    = document.createElement('button')
 	const _close   = document.createElement('button')
+	const _thumb   = document.createElement('button')
+	const _thumbNails   = document.createElement('section')
 
 	_elem.setAttribute('role', 'dialog')
 
 	_next.innerHTML  = '>'
 	_back.innerHTML  = '<'
 	_close.innerHTML = '&times;'
+	_thumb.innerHTML = 'T'
 
 	_close.title = 'Fechar'
 	_back.title  = 'Voltar'
 	_next.title  = 'Próximo'
+	_thumb.title  = 'Thumbnail'
 
 
 	_elem.className  = 'fancy'
 	_back.className  = 'left'
 	_next.className  = 'right'
 	_close.className = 'close'
+	_thumb.className = 'thumb'
+	_thumbNails.className = 'thumbnails'
 
 
 	this.desc.className  = 'desc'
@@ -107,6 +153,9 @@ FancyBox.prototype.showImage = function() {
 		_context.back()
 	})
 
+	_thumb.addEventListener('click', function() {
+		_context.thumbnailsShow(_thumbNails)
+	})
 
 	Array.prototype.forEach.call(this.images, function(items) {
 
@@ -127,6 +176,8 @@ FancyBox.prototype.showImage = function() {
 			_elem.appendChild(_next)
 			_elem.appendChild(_context.desc)
 			_elem.appendChild(_close)
+			_elem.appendChild(_thumb)
+			_elem.appendChild(_thumbNails)
 
 
 			document.body.appendChild(_elem)

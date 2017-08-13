@@ -1,0 +1,156 @@
+.fancy {
+	width: 100vw; 
+	height: 100vh;
+	background: rgba(0, 0, 0, .9); 
+	position: fixed;
+	margin: 0; 
+	top: 0; 
+	overflow: hidden;
+}
+
+.fancy .desc {
+	width: 90%; 
+	height: 45px; 
+	position: absolute; 
+	bottom: 0; 
+	left: 50%;  
+	padding: 20px; 
+	margin: 0 auto;
+}
+
+.fancy .desc p {
+	color: #fff; 
+	text-align: left;
+	font-size: 23px; 
+	font-family: Helvetica; 
+	position: absolute; 
+	left: 2%;
+	border-top: 1px solid #fff; 
+	width: 90%; padding: 10px; 
+	transform: translateX(-52%);
+}
+
+.fancy .main-image{
+	position: absolute; 
+	top: 50%; 
+	left: 50%; 
+	transform: translate(-50%, -50%);
+	transition: all .6s;
+	cursor: zoom-in;
+	width: 960px;
+	height: 620px;
+}
+
+.fancy button {
+	border: none;
+}
+
+.fancy button.left, .fancy button.right {
+	position: absolute;
+	background: #333;
+	border: 1px solid #fff;
+	top: 50%;
+	transform: translateY(-50%);
+	display: inline-block;
+	width: 60px;
+	height: 60px;
+	text-decoration: none;
+	color: #fff;
+	font-size: 22px;
+	line-height: 60px;
+	text-align: center;
+	cursor: pointer;
+	outline: none;
+}
+
+.fancy button.left {
+	left: 1%;
+}
+
+.fancy button.right {
+	right: 1%;
+}
+
+.fancy button.close {
+	right: 0;
+	top: 0;
+	position: absolute;
+	background: #333;
+	border: 1px solid #fff;
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	text-decoration: none;
+	color: #fff;
+	font-size: 22px;
+	line-height: 40px;
+	text-align: center;
+	cursor: pointer;
+	outline: none;
+}
+
+.fancy button.close:hover {
+	background: #000;
+}
+
+.fancy button.thumb {
+	position: absolute;
+	background: #333;
+	border: 1px solid #fff;
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	text-decoration: none;
+	color: #fff;
+	font-size: 22px;
+	line-height: 40px;
+	text-align: center;
+	cursor: pointer;
+	outline: none;
+	left: 0;
+	top: 0;
+}
+
+.fancy .thumbnails {
+	width: 100%;
+	height: 150px;
+	position: absolute;
+	bottom: 0;
+	background: rgba(255, 255, 255, .9);
+	transform: translateY(300px);
+	transition: transform .3s ease-in-out;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: nowrap;
+
+
+
+}
+
+.showThumbs {
+	transform: translateY(0) !important;
+}
+
+.fancy .thumbnails .minithumbs {
+	height: 150px;
+	margin: 0 auto;
+	white-space: nowrap;
+	overflow-x: auto;
+	overflow-y: hidden;
+	padding: 30px;
+		box-sizing: border-box;
+}
+
+.fancy .thumbnails .minithumbs > img {
+	width: 150px;
+	height: 100px;
+	cursor: pointer;
+	padding: 0 20px;
+}
+
+.zoom { 
+	transform: translate(-50%, -50%) scale(1.3) !important;
+	transition: all .3s; 
+	cursor: zoom-out !important;
+}
