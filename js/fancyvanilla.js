@@ -12,7 +12,8 @@ const FancyBox = function(target) {
 	this.src 	= []
 	this.alt 	= []
 
-	this.count  = 0
+	this.count   = 0
+	this.counter = 0
 
 	this.scaleImage()
 
@@ -63,6 +64,7 @@ FancyBox.prototype.next = function() {
 	this.desc.innerHTML = '<p>'+ this.getAltImages()[this.count] +'</p><br>'
 	this.hideAndShow()
 
+	console.log(this.count);
 }
 
 FancyBox.prototype.back = function() {
@@ -160,7 +162,7 @@ FancyBox.prototype.showImage = function() {
 	Array.prototype.forEach.call(this.images, function(items) {
 
 		items.style.cursor = 'pointer'
-		items.setAttribute('count', _context.count++)
+		items.setAttribute('counter', _context.counter++)
 
 		items.addEventListener('click', function(event) {
 
@@ -182,7 +184,7 @@ FancyBox.prototype.showImage = function() {
 
 			document.body.appendChild(_elem)
 
-			_context.count = parseInt(this.getAttribute('count'))
+			_context.count = parseInt(this.getAttribute('counter'))
 			
 		})
 
