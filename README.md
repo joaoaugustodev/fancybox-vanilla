@@ -2,6 +2,19 @@
 This its a simple puling of the light box for images made with pure JS
 
 
-## This project its not ready yet, but I want build the better pluging without jQuery for javascript community
+## Welcome to FancyBox Vanilla JS
+its very simple use this pluging without dependency of the other lib or framework
 
-Soon I build a documentation better. Thanks! :)
+> This is a simple documentation for who want use
+
+Well, its simple
+
+EX:
+
+```javascript
+
+FancyBox('.fancy')
+        .showImage()
+```        
+The parameter defined in FancyBox its a class tha I defined for encapsulate my images and next I call the method
+to show images like a fancyBox
