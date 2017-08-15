@@ -33,3 +33,6 @@ FancyBox('.fancy')
 ```        
 The parameter defined in FancyBox its a class tha I defined for encapsulate my images and next I call the method
 to show images like a fancyBox
+
+
+> Soon I will build a method for the videos and I'll better the method image modal
