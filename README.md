@@ -32,7 +32,7 @@ here its my HTML
 Next I call the class and method
 ```javascript
 
-FancyBox('.fancy')
+FancyBox('.fancyBox')
         .showImage()
 ``` 
 
